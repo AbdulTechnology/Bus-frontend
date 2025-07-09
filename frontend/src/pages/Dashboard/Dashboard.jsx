@@ -8,7 +8,8 @@ function Dashboard() {
   const [message, setMessage] = useState('');
   const [form, setForm] = useState({ from: '', to: '', date: '' });
   const [results, setResults] = useState([]);
-  const API_BASE_URL = process.env.VITE_BACKEND_URL;
+  const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 
   useEffect(() => {
     const token = localStorage.getItem('token');

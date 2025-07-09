@@ -7,6 +7,7 @@ function Login() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
+  const API_BASE_URL = process.env.VITE_BACKEND_URL;
   
   const RegisterClick = () => {
     navigate('/'); // Navigate to Register
@@ -20,7 +21,7 @@ function Login() {
     e.preventDefault();
     setError('');
     try {
-      const res = await axios.post('http://localhost:5000/api/users/login', form);
+      const res = await axios.post(`${API_BASE_URL}/api/users/login`, form);
       localStorage.setItem('token', res.data.token);
       alert('Login successful');
       navigate('/dashboard'); 

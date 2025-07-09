@@ -8,7 +8,8 @@ function Register() {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const [storedImage, setStoredImage] = useState(null);
   const navigate = useNavigate();
-  const API_BASE_URL = process.env.VITE_BACKEND_URL;
+  const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 
   const imageLocalStorageKey = 'CMBTRAVELS';

@@ -8,6 +8,7 @@ function Register() {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const [storedImage, setStoredImage] = useState(null);
   const navigate = useNavigate();
+  const API_BASE_URL = process.env.VITE_BACKEND_URL;
 
 
   const imageLocalStorageKey = 'CMBTRAVELS';
@@ -28,7 +29,7 @@ function Register() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/users/register', form);
+      await axios.post(`${API_BASE_URL}/api/users/register`, form);
       alert('Registered successfully');
       navigate('/login'); // ✅ Redirect to login
     } catch (err) {

@@ -8,6 +8,7 @@ function Dashboard() {
   const [message, setMessage] = useState('');
   const [form, setForm] = useState({ from: '', to: '', date: '' });
   const [results, setResults] = useState([]);
+  const API_BASE_URL = process.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -17,7 +18,7 @@ function Dashboard() {
     }
 
     axios
-      .get('http://localhost:5000/api/users/dashboard', {
+      .get(`${API_BASE_URL}/api/users/dashboard`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(res => setMessage(res.data.message))
@@ -34,7 +35,7 @@ function Dashboard() {
   const handleSearch = async e => {
     e.preventDefault();
     try {
-      const res = await axios.get(`http://localhost:5000/api/routes/search`, {
+      const res = await axios.get(`${API_BASE_URL}/api/routes/search`, {
         params: { from: form.from, to: form.to },
       });
       setResults(res.data);
